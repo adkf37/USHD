@@ -69,3 +69,24 @@ You can view the code for a particular publication by selecting the relevant bra
 You may find the [main IHME website here](http://www.healthdata.org).
 
 You may find [interactive USHD visualizations here](https://vizhub.healthdata.org/subnational/usa).
+
+## Downloading IHME GHDx data for decomposition experiments
+
+The life table and decomposition helpers in this repository require county-level
+mortality inputs. IHME distributes the publicly accessible life expectancy by
+county, race, and ethnicity estimates through the [GHDx catalog](https://ghdx.healthdata.org/record/ihme-data/united-states-causes-death-life-expectancy-by-county-race-ethnicity-2000-2019).
+
+Run the downloader script to mirror the ZIP archives referenced on the dataset
+page and extract them into a local workspace:
+
+```bash
+python scripts/download_ghdx_dataset.py --output-dir data/ghdx
+```
+
+By default the script stores the original archives under
+`data/ghdx/raw/` and extracts their contents into `data/ghdx/extracted/`.
+
+Some releases require you to accept data use agreements in a web browser before
+the files can be fetched programmatically. If the downloader reports HTTP 403
+errors, visit the dataset page manually, complete any required acknowledgements,
+and re-run the command.
